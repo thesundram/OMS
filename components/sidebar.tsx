@@ -101,9 +101,9 @@ export function Sidebar() {
       >
         <div className="flex flex-col h-full">
           {/* Logo and Branding Header */}
-          <div className="p-6 border-b border-border">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 ring-2 ring-primary/20">
+          <div className="p-6 border-b border-border space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Image
                   src="/logo.jpg"
                   alt="OMS Logo"
@@ -112,14 +112,14 @@ export function Sidebar() {
                   className="object-cover"
                 />
               </div>
-              <div className="flex-1">
-                <h1 className="text-xl font-bold text-primary leading-tight">OMS</h1>
-                <p className="text-xs text-muted-foreground">Order Management</p>
+              <div>
+                <h1 className="text-xl font-bold text-primary">OMS</h1>
+                <p className="text-xs text-muted-foreground">Cosmetics</p>
               </div>
             </div>
-            <div className="text-xs text-muted-foreground leading-relaxed pl-1">
-              <p className="font-medium text-foreground mb-0.5">Designed by</p>
-              <p className="font-semibold">Uttam Innovative Solution</p>
+            <div className="text-xs text-muted-foreground leading-tight">
+              <p className="font-semibold text-foreground">Designed and Developed by</p>
+              <p>Uttam Innovative Solution Pvt. Ltd.</p>
             </div>
           </div>
 

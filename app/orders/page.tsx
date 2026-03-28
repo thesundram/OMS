@@ -153,41 +153,49 @@ export default function OrderManagementPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Order ID</TableHead>
+                    <TableHead>Item Code</TableHead>
+                    <TableHead>Item Description</TableHead>
                     <TableHead>Customer</TableHead>
-                    <TableHead>Type</TableHead>
                     <TableHead>Amount</TableHead>
                     <TableHead>Date</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Items</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredOrders.map((order) => (
                     <TableRow key={order.id}>
-                      <TableCell className="font-medium">{order.orderNumber}</TableCell>
+                      <TableCell className="font-semibold text-primary">{order.orderNumber}</TableCell>
                       <TableCell>
-                        <div>
-                          <p className="font-medium">{order.customerName}</p>
-                          <p className="text-xs text-muted-foreground">{order.email}</p>
+                        <div className="space-y-1">
+                          {order.items.map((item, idx) => (
+                            <div key={idx} className="text-sm font-mono bg-muted px-2 py-0.5 rounded">
+                              {item.productId}
+                            </div>
+                          ))}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="capitalize">
-                          {order.customerType === 'dealer' ? 'Dealer' : 'E-Customer'}
-                        </Badge>
+                        <div className="space-y-1 max-w-xs">
+                          {order.items.map((item, idx) => (
+                            <div key={idx} className="text-sm">
+                              <span className="font-medium">{item.productName}</span>
+                              <span className="text-muted-foreground ml-2">(Qty: {item.quantity})</span>
+                            </div>
+                          ))}
+                        </div>
                       </TableCell>
-                      <TableCell className="font-medium">₹{order.totalAmount.toLocaleString()}</TableCell>
-                      <TableCell>{formatDate(order.createdDate)}</TableCell>
+                      <TableCell className="font-medium">{order.customerName}</TableCell>
+                      <TableCell className="font-semibold">₹{order.totalAmount.toLocaleString()}</TableCell>
+                      <TableCell className="text-muted-foreground">{formatDate(order.createdDate)}</TableCell>
                       <TableCell>
                         <Badge variant={getStatusColor(order.status)} className={`capitalize ${getStatusBadgeClass(order.status)}`}>
                           {order.status}
                         </Badge>
                       </TableCell>
-                      <TableCell>{order.items.length}</TableCell>
                       <TableCell>
                         <Button
-                          variant="ghost"
+                          variant="outline"
                           size="sm"
                           className="text-xs gap-1"
                           onClick={() => handleViewOrder(order)}
